@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Aleksandr on 3/28/2018.
@@ -14,9 +15,9 @@ import java.util.ArrayList;
 
 class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
-    ArrayList<String> users;
+    List<User> users;
 
-    public UserAdapter(ArrayList<String> users) {
+    public UserAdapter(List<User> users) {
         this.users = users;
     }
 
@@ -29,8 +30,9 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(UserAdapter.ViewHolder holder, int position) {
 
-        holder.firstName.setText( users.get( position ) );
-
+        holder.firstName.setText( users.get( position ).getFirstname() );
+        holder.lastName.setText( users.get( position ).getLastName() );
+        holder.email.setText( users.get( position ).getEmail());
     }
 
     @Override
@@ -40,9 +42,13 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView firstName;
+        public TextView lastName;
+        public TextView email;
         public ViewHolder(View itemView) {
             super( itemView );
             firstName = itemView.findViewById( R.id.first_name );
+            lastName = itemView.findViewById( R.id.last_name );
+            email = itemView.findViewById( R.id.email );
         }
     }
 }
